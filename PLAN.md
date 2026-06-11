@@ -31,13 +31,17 @@ This is a fun father–son project, not a secret — Mom knows all about it. The
 
 ## How the "disguise" works (the clever bit)
 
-- The app opens to a list of "AI personas" — e.g. *Aria*, *Sage*, *Nova*.
-  - Some of these really ARE the AI assistant (tap one, it chats back like a bot).
-  - One of them is actually **the other person** (Dad ↔ son) wearing an
-    AI-persona costume.
-- An optional **unlock** — a PIN, or a secret phrase typed "to the AI" —
-  reveals the human chat. Without it, the app is just an AI assistant.
-- **Invites** are simple codes/links Dad hands out. Only code-holders join.
+The disguise is the **scramble itself**, not a fake theme:
+
+- **Scrambled by default.** When the app opens (or re-opens), the real
+  conversation is hidden/scrambled — at a glance it reads like ordinary,
+  meaningless AI chatter, not a real conversation.
+- **Secret input reveals it.** A secret input — a passphrase, a tap pattern, or
+  a special "message" typed to the AI — unscrambles and shows the real chat.
+- **Re-scrambles automatically** every time the app is reopened (or after a
+  quick hide), so the real messages are never just sitting there visible.
+- **Invites** are simple codes/links Dad hands out. Only code-holders join
+  (for now, just Dad + son).
 
 ## Works at school (key requirement)
 
@@ -48,14 +52,15 @@ drives several things:
   cellular) reaching Dad wherever he is, with messages arriving instantly. This
   is why a hosted real-time backend is *required* (see backend decision — it's
   now effectively settled in favor of Supabase).
-- **Convincing cover at school:** the app should read as a **homework / study
-  AI helper** — a kid on a study app draws zero attention.
+- **Convincing cover at school:** if anyone glances over, the screen shows
+  scrambled / generic-looking AI chatter, not a real conversation (see the
+  disguise section). No secret input → nothing readable.
 - **Quiet notifications:** when Dad replies, the tablet nudges the son, but the
-  lock-screen preview is generic (e.g. *"Your study summary is ready"*) — never
-  the actual message text.
-- **One-tap panic hide:** a quick gesture instantly returns to the plain AI
-  screen; a PIN unlocks the hidden chat again. Teacher walks by → one tap → it's
-  just a chatbot.
+  lock-screen preview is generic (e.g. *"New suggestion ready"*) — never the
+  actual message text.
+- **One-tap panic hide:** a quick gesture instantly re-scrambles and hides the
+  chat; the secret input brings it back. Teacher walks by → one tap → it's just
+  noise.
 - **Nothing that looks like a messaging app:** no chat-bubble icons, no
   text-style notification badges.
 
@@ -67,7 +72,8 @@ with the son on *when* it's okay to use (lunch, breaks) so it stays a fun thing.
 ## Tablet-friendly
 
 - Big, easy touch targets and text (a kid will use it).
-- Works on his son's tablet (Android tablet or iPad — confirm which).
+- **Android tablet** (confirmed) — easy install path: build an installable APK
+  via EAS ("trelio") and put it on his tablet directly, no app store needed.
 
 ## Proposed build (the tech, in plain terms)
 
@@ -107,6 +113,6 @@ messaging, and push notifications that work over the internet from anywhere.
 - [x] App name → RagaMuffin
 - [ ] Everything else
 
-## Notes / things to confirm
+## Notes
 
-- Which tablet is it? (Android tablet vs iPad — affects how we install it.)
+- Tablet: Android (confirmed) → install via EAS APK, like the CynLabs Mapp.
