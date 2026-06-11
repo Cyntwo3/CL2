@@ -1,4 +1,6 @@
-# CL2 — "AI assistant" app that's secretly a dad-and-son chat
+# RagaMuffin — "AI assistant" app that's secretly a dad-and-son chat
+
+(Repo name: CL2. App name: **RagaMuffin**.)
 
 Plain-English plan. This file is the source of truth for what we're building.
 Update it when something changes.
@@ -37,6 +39,31 @@ This is a fun father–son project, not a secret — Mom knows all about it. The
   reveals the human chat. Without it, the app is just an AI assistant.
 - **Invites** are simple codes/links Dad hands out. Only code-holders join.
 
+## Works at school (key requirement)
+
+The son wants to message Dad **during the school day**, from his tablet. This
+drives several things:
+
+- **Must work over the internet from anywhere** — his tablet (school wi-fi or
+  cellular) reaching Dad wherever he is, with messages arriving instantly. This
+  is why a hosted real-time backend is *required* (see backend decision — it's
+  now effectively settled in favor of Supabase).
+- **Convincing cover at school:** the app should read as a **homework / study
+  AI helper** — a kid on a study app draws zero attention.
+- **Quiet notifications:** when Dad replies, the tablet nudges the son, but the
+  lock-screen preview is generic (e.g. *"Your study summary is ready"*) — never
+  the actual message text.
+- **One-tap panic hide:** a quick gesture instantly returns to the plain AI
+  screen; a PIN unlocks the hidden chat again. Teacher walks by → one tap → it's
+  just a chatbot.
+- **Nothing that looks like a messaging app:** no chat-bubble icons, no
+  text-style notification badges.
+
+**Honest note for Dad:** most schools restrict device messaging during class;
+the disguise doesn't change school rules, and the realistic downside if a
+teacher catches on is the tablet getting confiscated. Dad + Mom should agree
+with the son on *when* it's okay to use (lunch, breaks) so it stays a fun thing.
+
 ## Tablet-friendly
 
 - Big, easy touch targets and text (a kid will use it).
@@ -52,24 +79,20 @@ This is a fun father–son project, not a secret — Mom knows all about it. The
 - **The AI:** Claude (Anthropic). The secret key stays on the server, never on
   the tablet.
 
-## Open decision: the backend
+## Backend: DECIDED → Supabase
 
-The one thing that shapes everything else. Two options:
+The "chat at school" requirement settled this: we need hosted accounts, live
+messaging, and push notifications that work over the internet from anywhere.
 
-- **Option A — Supabase (recommended).** A ready-made "backend in a box."
-  Handles accounts, invite codes, and *live* messaging out of the box, with a
-  generous free tier. Fastest and most reliable for real-time chat; least code
-  to maintain. Slightly less "built by us from scratch."
-- **Option B — Build on the existing setup (Railway + same database tech as
-  CynLabs).** More familiar and more "ours," but live chat and accounts are a
-  lot more to build and maintain by hand.
-
-Recommendation: **A**, because reliable live chat is the hard part and Supabase
-gives it for free.
+- **Supabase (chosen).** Ready-made "backend in a box" — accounts, invite
+  codes, *live* messaging, and the building blocks for notifications, on a
+  generous free tier. Fastest and most reliable path; least code to maintain.
+- (Rejected: building it by hand on Railway/Postgres — far more work to make
+  live chat + notifications reliable, with no real upside here.)
 
 ## Rough phases
 
-1. Pick the backend (above).
+1. ~~Pick the backend~~ → done (Supabase).
 2. Get a blank Expo app running on the son's tablet ("hello world").
 3. The AI assistant half (real, working Claude chat).
 4. The hidden chat half (Dad ↔ son live messages, AI-styled).
@@ -80,10 +103,10 @@ gives it for free.
 
 - [x] Repo created locally (`C:\Users\wkayf\cl2`)
 - [ ] Pushed to GitHub (`Cyntwo3/CL2`) — waiting on internet
-- [ ] Backend decision
+- [x] Backend decision → Supabase
+- [x] App name → RagaMuffin
 - [ ] Everything else
 
 ## Notes / things to confirm
 
 - Which tablet is it? (Android tablet vs iPad — affects how we install it.)
-- A name for the app? ("CL2" is just the repo name for now.)
