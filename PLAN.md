@@ -96,6 +96,28 @@ messaging, and push notifications that work over the internet from anywhere.
 - (Rejected: building it by hand on Railway/Postgres — far more work to make
   live chat + notifications reliable, with no real upside here.)
 
+## Why it's worth building (the product path)
+
+The dad-and-son version isn't a throwaway — it's the **MVP and the perfect test
+user**. The same build is the foundation of a real product if it earns it.
+
+- **The hook is differentiated.** Plenty of "private messenger" and "vault"
+  apps exist; almost none are *also* a genuinely useful AI assistant. "An AI
+  assistant where your real conversations are scrambled until you know the
+  secret" is a one-line pitch people remember.
+- **Real demand.** Shared devices (kids, couples, families), privacy-minded
+  users, anyone who wants a chat that isn't obvious at a glance.
+- **Builds on what Dad already has.** Expo + EAS ("trelio"), Supabase, Claude —
+  no new ecosystem to learn from scratch.
+- **Levels up regardless.** Even if it never goes commercial, it's a finished,
+  polished, real-users app — a genuine step up in skill and a portfolio piece.
+
+**The discipline that makes it pay off:** finish the kid MVP *first*, polished,
+with one real happy user (his son). Don't build for a hypothetical market before
+the core works. Ship small → learn → then decide whether to open it up
+(more invite circles, Play Store, maybe a paid tier). One finished app beats
+five half-built ones.
+
 ## Rough phases
 
 1. ~~Pick the backend~~ → done (Supabase).
