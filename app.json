@@ -40,6 +40,13 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "44cc7351-89d0-48a9-9921-75f126c20562"
+      }
+    },
+    "owner": "trelio"
   }
 }
