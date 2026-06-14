@@ -3,7 +3,7 @@ import { supabase } from '@/lib/supabase';
 // Pre-created Supabase users — emails are internal identifiers, not real addresses.
 // The invite codes ARE the passwords for these accounts.
 const USER_MAP = [
-  { email: 'dad@ragamuffin.local', role: 'dad', displayName: 'Dad' },
+  { email: 'fwmcynical@gmail.com', role: 'dad', displayName: 'Dad' },
   { email: 'son@ragamuffin.local', role: 'son', displayName: 'Son' },
 ];
 
