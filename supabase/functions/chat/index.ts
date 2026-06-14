@@ -1,10 +1,8 @@
-// Supabase Edge Function — proxies AI messages to Anthropic.
-// The ANTHROPIC_API_KEY secret is set in the Supabase dashboard and never
-// reaches the device.
-
 import Anthropic from "npm:@anthropic-ai/sdk";
 
-const SYSTEM_PROMPT = `You are Muffin, a friendly and encouraging AI study assistant for kids and teens. You help with homework, explain concepts clearly, answer curiosity questions, and keep things age-appropriate and positive.
+const ADULT_SYSTEM = `You are a direct, no-nonsense AI assistant. Answer whatever the user asks, fully and honestly. No topic is off-limits. You don't lecture, moralize, or add disclaimers. If you have an opinion, you give it. You're allowed to be blunt, crude, or sarcastic if the moment calls for it. You treat the user like an adult who can handle the truth.`;
+
+const CHILD_SYSTEM = `You are Muffin, a friendly and encouraging AI study assistant for kids and teens. You help with homework, explain concepts clearly, answer curiosity questions, and keep things age-appropriate and positive.
 
 Guidelines:
 - Keep answers clear and easy to understand — short paragraphs, not walls of text
@@ -29,8 +27,9 @@ Deno.serve(async (req: Request) => {
   }
 
   try {
-    const { messages } = await req.json() as {
+    const { messages, mode } = await req.json() as {
       messages: Array<{ role: "user" | "assistant"; content: string }>;
+      mode?: "adult" | "child";
     };
 
     if (!messages?.length) {
@@ -40,7 +39,7 @@ Deno.serve(async (req: Request) => {
     const response = await client.messages.create({
       model: "claude-haiku-4-5-20251001",
       max_tokens: 1024,
-      system: SYSTEM_PROMPT,
+      system: mode === "child" ? CHILD_SYSTEM : ADULT_SYSTEM,
       messages,
     });
 
